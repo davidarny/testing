@@ -1,0 +1,9 @@
+2 2 2, equilateral
+2 2 3, isosceles
+2 3 4, normal
+2 2, not a triangle
+123 4444 675, normal
+, not a triangle
+2 a 4, not a triangle
+a a a, not a triangle
+a, not a triangle
