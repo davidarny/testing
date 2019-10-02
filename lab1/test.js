@@ -9,6 +9,10 @@ function main() {
      */
     const args = process.argv.slice(2);
 
+    if (args.length < 2) {
+        return;
+    }
+
     const input = fs.readFileSync(args[0]);
     const output = fs.createWriteStream("output.txt", { encoding: "UTF-8" });
 
@@ -23,13 +27,17 @@ function main() {
     for (const test of tests) {
         const data = test[0];
         const expected = test[1];
-        const buffer = exec(`node main.js ${data}`);
+        // handling last empty line
+        if (!data && !expected) {
+            continue;
+        }
+        const buffer = exec(`node ${args[1]} ${data}`);
         const actual = buffer.toString().trim();
 
         if (expected === actual) {
-            output.write("success\n");
+            output.write(`✔ success test "${data}, ${expected}"\n`);
         } else {
-            output.write("error\n");
+            output.write(`❌ failed test "${data}, ${expected}"\n`);
         }
     }
 

@@ -1,9 +1,13 @@
-success
-success
-success
-success
-success
-success
-success
-success
-success
+✔ success test "0 0 0, not a triangle"
+✔ success test "-1 2 3, not a triangle"
+✔ success test "2 2 2, equilateral"
+✔ success test "2 2 3, isosceles"
+✔ success test "2 3 4, normal"
+✔ success test "2 2, not a triangle"
+✔ success test "123 4444 675, normal"
+✔ success test ", not a triangle"
+✔ success test "2 a 4, not a triangle"
+✔ success test "a a a, not a triangle"
+✔ success test "a, not a triangle"
+✔ success test "999999999999999999999999999999999999999999999999999999999999999 9999999999999999999999999999999 999, normal"
+✔ success test "9999999999999999999999999999999 9999999999999999999999999999999 9999999999999999999999999999999, equilateral"

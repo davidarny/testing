@@ -5,7 +5,7 @@ function main() {
 
     /**
      * Program arguments
-     * 
+     *
      * @type {[string, string, string]}
      */
     const args = process.argv.slice(2);
@@ -17,7 +17,7 @@ function main() {
 
     /**
      * Number regex
-     * 
+     *
      *  @type {string}
      */
     const regex = "\\d+";
@@ -29,6 +29,11 @@ function main() {
         b = parseInt(args[1]);
         c = parseInt(args[2]);
     } else {
+        console.log("not a triangle");
+        return;
+    }
+
+    if (a <= 0 || b <= 0 || c <= 0) {
         console.log("not a triangle");
         return;
     }
