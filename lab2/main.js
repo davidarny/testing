@@ -14,7 +14,7 @@ async function main() {
 
 async function testHtmlLinks(url) {
     try  {
-        const content = await request(url, { encoding: "utf8", timeout: 1000 });
+        const content = await request(url, { encoding: "utf8", timeout: 5000 });
         console.log(`\t✅  ${url}`)
         await runTestsDeep(content);
     } catch {
@@ -41,7 +41,7 @@ async function runTestsDeep(content) {
         if (link.startsWith("http")) {
             // skip any third-party URL
             if (isThirdPartyUrl(link)) {
-                return;
+                continue;
             }
             console.log(`Processing ${link}`)
             await testHtmlLinks(link);
