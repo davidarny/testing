@@ -15,10 +15,10 @@ async function main() {
 async function testHtmlLinks(url) {
     try  {
         const content = await request(url, { encoding: "utf8", timeout: 5000 });
-        console.log(`\t✅  ${url}`)
+        console.log(`✅  ${url}`)
         await runTestsDeep(content);
     } catch {
-        console.log(`\t❌  ${url}`)
+        console.log(`❌  ${url}`)
     }
 }
 
@@ -27,9 +27,8 @@ async function runTestsDeep(content) {
     const { document } = window;
     const nodes = document.getElementsByTagName("a");
     const links = getLinksFromNodes(nodes);
-    for (let link of links) {
-        link = getNormalizedUrl(link);
-        const url = getNormalizedUrl(`${URL}/${link}`);
+    for (const link of links) {
+        const url = `${URL}/${link}`;
         // check if links already processed
         if (isLinkProcessed(url) || isLinkProcessed(link)) {
             continue;
@@ -43,14 +42,8 @@ async function runTestsDeep(content) {
             if (isThirdPartyUrl(link)) {
                 continue;
             }
-            console.log(`Processing ${link}`)
             await testHtmlLinks(link);
         } else if (url.startsWith("http")) {
-            // skip any third-party URL
-            if (isThirdPartyUrl(url)) {
-                return;
-            }
-            console.log(`Processing ${url}`)
             await testHtmlLinks(url);
         }
     }
@@ -73,11 +66,6 @@ function markLinkProcessed(url) {
 
 function isThirdPartyUrl(url) {
     return !url.startsWith(BASE_URL);
-}
-
-function getNormalizedUrl(url) {
-    const regex = /(?<!(http:|https:))\/\//g;
-    return url.replace(regex, "/");
 }
 
 main();
