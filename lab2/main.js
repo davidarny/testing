@@ -3,22 +3,39 @@ const request = require("request-promise-native");
 
 const { JSDOM } = jsdom;
 
-const BASE_URL = "http://52.136.215.164"
+const BASE_URL = "http://52.136.215.164";
 const URL = `${BASE_URL}/broken-links`;
 
 const processed = new Set();
 
+const counters = {
+    err: 0,
+    ok: 0,
+};
+
 async function main() {
     await testHtmlLinks(URL + "/");
+
+    const now = new Date().toISOString();
+
+    console.log(`\n${counters.ok}\n${now}`);
+    console.error(`\n${counters.err}\n${now}`);
 }
 
 async function testHtmlLinks(url) {
-    try  {
-        const content = await request(url, { encoding: "utf8", timeout: 5000 });
-        console.log(`✅  ${url}`)
-        await runTestsDeep(content);
-    } catch {
-        console.log(`❌  ${url}`)
+    const options = {
+        encoding: "utf8",
+        timeout: 5000,
+        resolveWithFullResponse: true,
+    };
+    try {
+        const response = await request(url, options);
+        counters.ok++;
+        console.log(`${response.statusCode}\t${url}`);
+        await runTestsDeep(response.body);
+    } catch (error) {
+        counters.err++;
+        console.error(`${error.statusCode}\t${url}`);
     }
 }
 
@@ -50,9 +67,8 @@ async function runTestsDeep(content) {
 }
 
 function getLinksFromNodes(nodes) {
-    return Array
-        .from(nodes)
-        .map(node => (node.href.trim()))
+    return Array.from(nodes)
+        .map(node => node.href.trim())
         .filter(Boolean);
 }
 

@@ -21,8 +21,10 @@ function main() {
      *
      * @type {Array<[string, string]>}
      */
-    const tests = input.toString().split("\n").map(string => string.trim().split(", "));
-
+    const tests = input
+        .toString()
+        .split("\n")
+        .map(string => string.trim().split(", "));
 
     for (const test of tests) {
         const data = test[0];
@@ -46,6 +48,6 @@ function main() {
 
 try {
     main();
-} catch(e) {
+} catch (e) {
     console.log(e);
 }

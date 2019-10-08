@@ -1,0 +1,12 @@
+{
+    "name": "testing",
+    "version": "1.0.0",
+    "repository": "https://github.com/DavidArutiunian/testing.git",
+    "author": "David Arutiunian <arutunjan666@mail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^6.5.1",
+        "eslint-config-prettier": "^6.4.0",
+        "prettier": "^1.18.2"
+    }
+}
