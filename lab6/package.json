@@ -15,8 +15,7 @@
         "prettier": "^1.19.1"
     },
     "scripts": {
-        "test": "jest",
-        "coverage": "jest --coverage"
+        "test": "jest"
     },
     "jest": {
         "setupFiles": [
