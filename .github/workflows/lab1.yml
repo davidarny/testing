@@ -22,3 +22,5 @@ jobs:
       run: |
         yarn start
         cat output.txt
+      env:
+        CI: true
