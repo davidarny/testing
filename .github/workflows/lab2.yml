@@ -19,12 +19,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       working-directory: lab2
-      run: yarn install --frozen-lockfile
+      run: yarn install --non-interactive --no-progress --skip-integrity-check --frozen-lockfile
     - name: Run tests
       working-directory: lab2
       run: |
         yarn start
+        echo "==================== OK ===================="
         cat ok.txt
+        echo "==================== ERROR ===================="
         cat err.txt
       env:
         CI: true
