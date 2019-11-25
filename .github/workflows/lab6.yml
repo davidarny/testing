@@ -1,0 +1,29 @@
+name: Lab6 CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      working-directory: lab6
+      run: yarn install --non-interactive --no-progress --skip-integrity-check --frozen-lockfile
+    - name: Run tests
+      working-directory: lab6
+      run: yarn test
+      env:
+        CI: true
+        BASE_URL: http://52.136.215.164:9000/api
+        TIMEOUT: 3000
