@@ -19,4 +19,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Run tests
       working-directory: lab1
-      run: yarn start
+      run: |
+        yarn start
+        cat output.txt
