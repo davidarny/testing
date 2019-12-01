@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 global.createProductStoreFactory = client => payload => {
     const inserted = [];
 
@@ -24,11 +26,21 @@ global.createProductStoreFactory = client => payload => {
     };
 };
 
-global.addTimestampToTitleAndAlias = payload => {
-    const timestamp = new Date().valueOf();
+global.toKebabCase = str => {
+    return str.replace(/\s+/g, "-").toLowerCase();
+};
+
+global.createPayload = () => {
+    const title = faker.lorem.words(5);
     return {
-        ...payload,
-        title: `${payload.title} ${timestamp}`,
-        alias: `${payload.alias}-${timestamp}-0`,
+        category_id: "1",
+        title,
+        content: faker.lorem.lines(5),
+        price: `${faker.random.number(1000)}`,
+        old_price: `${faker.random.number(1000)}`,
+        status: "0",
+        keywords: title.split(" ").join(","),
+        description: faker.lorem.lines(1),
+        hit: "0",
     };
 };
