@@ -1,0 +1,21 @@
+{
+    "name": "lab8",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest"
+    },
+    "dependencies": {
+        "@types/jest": "^24.0.23",
+        "@types/node": "^12.12.20",
+        "@types/puppeteer": "^2.0.0",
+        "jest": "^24.9.0",
+        "puppeteer": "^2.0.0"
+    },
+    "jest": {
+        "setupFilesAfterEnv": [
+            "<rootDir>/test/setup.js"
+        ]
+    }
+}
