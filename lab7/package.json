@@ -16,7 +16,7 @@
         "@types/supertest": "^2.0.8",
         "concurrently": "^5.0.1",
         "cross-env": "^6.0.3",
-        "fastify": "^2.11.0",
+        "fastify": "^2.15.1",
         "jest": "^24.9.0",
         "mountebank": "^2.1.2",
         "node-fetch": "^2.6.0",
